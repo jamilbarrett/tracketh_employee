@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 
-// Connect to the database
+// Connect to the legion
 const db = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
@@ -9,7 +9,6 @@ const db = mysql.createConnection({
   database: 'the_legion'
 });
 
-// Function to view all departments
 function viewAllDepartments() {
   db.query('SELECT * FROM department', function (err, results) {
     if (err) {
@@ -18,10 +17,10 @@ function viewAllDepartments() {
     }
 
     console.table(results);
+    return intializeApp();
   });
 }
 
-// Function to view all roles
 function viewAllRoles() {
   db.query('SELECT * FROM role', function (err, results) {
     if (err) {
@@ -30,10 +29,10 @@ function viewAllRoles() {
     }
 
     console.table(results);
+    return intializeApp();
   });
 }
 
-// Function to view all employees
 function viewAllEmployees() {
   db.query('SELECT * FROM employee', function (err, results) {
     if (err) {
@@ -42,10 +41,10 @@ function viewAllEmployees() {
     }
 
     console.table(results);
+    return intializeApp();
   });
 }
 
-// Function to add a department
 function addDepartment() {
   inquirer
     .prompt([
@@ -67,13 +66,14 @@ function addDepartment() {
         }
 
         console.log('Department added successfully!');
+        intializeApp()
+        
       });
     });
 }
 
-// Function to add a role
+
 function addRole() {
-  // Prompt user for role details
   inquirer
     .prompt([
       {
@@ -90,7 +90,8 @@ function addRole() {
         type: 'input',
         name: 'departmentId',
         message: 'Enter the department ID for the role:'
-      }
+      },
+      
     ])
     .then((answers) => {
       const role = {
@@ -106,13 +107,13 @@ function addRole() {
         }
 
         console.log('Role added successfully!');
+        return intializeApp();
       });
     });
 }
 
-// Function to add an employee
+
 function addEmployee() {
-  // Prompt user for employee details
   inquirer
     .prompt([
       {
@@ -125,16 +126,7 @@ function addEmployee() {
         name: 'lastName',
         message: 'Enter the last name of the employee:'
       },
-      {
-        type: 'input',
-        name: 'roleId',
-        message: 'Enter the role ID for the employee:'
-      },
-      {
-        type: 'input',
-        name: 'managerId',
-        message: 'Enter the manager ID for the employee:'
-      }
+      
     ])
     .then((answers) => {
       const employee = {
@@ -151,6 +143,7 @@ function addEmployee() {
         }
 
         console.log('Employee added successfully!');
+        return intializeApp()
       });
     });
 }
@@ -169,7 +162,7 @@ function updateEmployeeRole() {
       value: employee.id
     }));
 
-    // Prompt user to select an employee
+    // Prompt user to select employee of the legion
     inquirer
       .prompt([
         {
@@ -198,15 +191,17 @@ function updateEmployeeRole() {
             }
 
             console.log('Employee role updated successfully!');
+            return intializeApp()
+            
           }
         );
       });
   });
 }
 
-// Prompt user with options
-inquirer
-  .prompt([
+// Prompt user with list of legion options
+function intializeApp() {
+  inquirer.prompt([
     {
       type: 'list',
       name: 'action',
@@ -252,3 +247,6 @@ inquirer
         process.exit(0); // Exit the application
     }
   });
+}
+
+intializeApp()
