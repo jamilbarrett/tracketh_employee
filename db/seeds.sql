@@ -14,12 +14,12 @@ VALUES
     ('Fixer', 500000),
     ('Spy', 40000);
 
-INSERT INTO employee (name)
+INSERT INTO employee (first_name, last_name)
 VALUES 
-    ('Jamil Barrett'),
-    ('Lily Chen'),
-    ('Ethan Hunt'),
-    ('Jason Bourne'),
-    ('James Bond'),
-    ('Ghost');
+    ('Jamil', 'Barrett'),
+    ('Lily', 'Chen'),
+    ('Ethan', 'Hunt'),
+    ('Jason', 'Bourne'),
+    ('James', 'Bond'),
+    ('Ghost', 'Rider');
 
