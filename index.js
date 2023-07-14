@@ -126,6 +126,17 @@ function addEmployee() {
         name: 'lastName',
         message: 'Enter the last name of the employee:'
       },
+      {
+        type: 'input',
+        name: 'roleId',
+        message: 'Enter the new role ID for the employee:'
+      },
+      {
+        type: 'input',
+        name: 'managerId',
+        message: 'Enter the new manager ID for the employee:'
+      },
+      
       
     ])
     .then((answers) => {

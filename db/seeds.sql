@@ -7,7 +7,7 @@ VALUES
     ('Unalivers'),
     ('Counterfeiters');
 
-INSERT INTO role (title, salary)
+INSERT INTO role (title, salary, id)
 VALUES 
     ('Hitman', 300000),
     ('Undercover Operative', 125000),
